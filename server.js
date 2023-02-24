@@ -1,8 +1,10 @@
 const express = require("express");
 const app = express();
+const fetch = (...args) => import("node-fetch").then(module => module.default(...args));
 const cors = require("cors");
 require('dotenv').config()
 const corsOptions = {
+      origin: ["http://localhost:3000", "https://newsappplication.netlify.app"],
   credentials: true, //access-control-allow-credentials:true
   optionSuccessStatus: 200,
 };
