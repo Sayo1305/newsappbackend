@@ -9,8 +9,8 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 app.use(express.json());
-app.get("/", async (req, res) => {
-  res.json("hello world" + " " + `${process.env.REACT_APP_APIKEY}`);
+app.get("/",  (req, res) => {
+  res.json("hello world");
 });
 
 app.get("/trendingnews", async (req, res) => {
