@@ -36,9 +36,15 @@ app.post("/caroselnews", async (req, res) => {
 });
 
 app.post("/search", async (req, res) => {
+  var today = new Date();
+  today.setMonth(today.getMonth() - 1);
+  var year = today.getFullYear();
+  var month = String(today.getMonth() + 1).padStart(2, '0');
+  var day = String(today.getDate()).padStart(2, '0');
+  var pastDate = year + '-' + month + '-' + day;
   const searchtopic = JSON.parse(req.body.body);
   fetch(
-    `https://newsapi.org/v2/everything?q=${searchtopic}&from=2023-02-21&sortBy=publishedAt&apiKey=${process.env.REACT_APP_APIKEY}`
+    `https://newsapi.org/v2/everything?q=${searchtopic}&from=${pastDate}&sortBy=publishedAt&apiKey=${process.env.REACT_APP_APIKEY}`
   )
     .then((response) => response.json())
     .catch((error) => console.error(error))
